@@ -1,12 +1,156 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|c:\\users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\aquentchallenge\\aquentchallenge\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D1DF5B96-2843-41B3-AC6C-DA01CC81CE0F}|AquentChallenge\\AquentChallenge.csproj|solutionrelative:aquentchallenge\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20251024215851_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs",
+              "RelativeDocumentMoniker": "AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs",
+              "RelativeToolTip": "AquentChallenge\\Migrations\\20251024215851_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T21:58:51.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\appsettings.json",
+              "RelativeDocumentMoniker": "AquentChallenge\\appsettings.json",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\appsettings.json",
+              "RelativeToolTip": "AquentChallenge\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-24T21:57:04.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Program.cs",
+              "RelativeDocumentMoniker": "AquentChallenge\\Program.cs",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Program.cs",
+              "RelativeToolTip": "AquentChallenge\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABEAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T21:54:43.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Models\\Person.cs",
+              "RelativeDocumentMoniker": "AquentChallenge\\Models\\Person.cs",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Models\\Person.cs",
+              "RelativeToolTip": "AquentChallenge\\Models\\Person.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAgwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T21:38:21.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Models\\Client.cs",
+              "RelativeDocumentMoniker": "AquentChallenge\\Models\\Client.cs",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Models\\Client.cs",
+              "RelativeToolTip": "AquentChallenge\\Models\\Client.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T21:35:20.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "AquentChallenge\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "AquentChallenge\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T21:23:46.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "AquentChallenge\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "AquentChallenge\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T21:10:33.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AquentChallenge\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\absch\\source\\repos\\andrew-schaefer-dotnet-crud-app\\AquentChallenge\\AquentChallenge\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "AquentChallenge\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T21:06:40.976Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

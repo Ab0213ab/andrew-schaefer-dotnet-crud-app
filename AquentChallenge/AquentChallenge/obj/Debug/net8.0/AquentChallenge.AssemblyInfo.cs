@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AquentChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce5e85b2b9ad123aadbf6755957d809d772908a6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a32e1d8bf7122f050e9f7d8c1c1649cd71a4d74")]
 [assembly: System.Reflection.AssemblyProductAttribute("AquentChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AquentChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,3 +2,6 @@
 *.iml
 target/
 *.log
+.vs/
+*.db-shm
+*.db-wal
