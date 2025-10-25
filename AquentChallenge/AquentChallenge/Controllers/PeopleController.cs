@@ -64,7 +64,7 @@ namespace AquentChallenge.Controllers
             return View(people);
         }
 
-        // GET: People/Details/5
+        // GET: People/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -155,7 +155,7 @@ namespace AquentChallenge.Controllers
             return View(person); // TODO: replace this with modal later
         }
 
-        // POST: People/Delete/5 (soft delete)
+        // POST: People/Delete (soft delete)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

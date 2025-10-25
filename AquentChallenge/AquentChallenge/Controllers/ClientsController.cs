@@ -84,7 +84,7 @@ namespace AquentChallenge.Controllers
             return View("Form", client);
         }
 
-        // POST: Clients/Edit/5
+        // POST: Clients/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyName,Website,Phone,Address")] Client client)
@@ -124,7 +124,7 @@ namespace AquentChallenge.Controllers
             return View(client); // TODO: Replace this with a modal later
         }
 
-        // POST: Clients/Delete/5 (soft delete)
+        // POST: Clients/Delete (soft delete)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
