@@ -19,6 +19,7 @@ namespace AquentChallenge.Controllers
             _context = context;
         }
 
+
         private void LoadClients()
         {
             ViewData["Clients"] = _context.Clients
@@ -27,7 +28,7 @@ namespace AquentChallenge.Controllers
                 .ToList();
         }
 
-        // GET: People
+
         public async Task<IActionResult> Index(bool showDeleted = false)
         {
            IQueryable<Person> query = _context.People;
@@ -64,7 +65,7 @@ namespace AquentChallenge.Controllers
             return View(people);
         }
 
-        // GET: People/Details
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -89,7 +90,6 @@ namespace AquentChallenge.Controllers
         }
 
 
-        // POST: People/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FirstName,LastName,EmailAddress,StreetAddress,City,State,ZipCode,ClientId")] Person person)
@@ -105,7 +105,7 @@ namespace AquentChallenge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: People/Edit
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -117,7 +117,7 @@ namespace AquentChallenge.Controllers
             return View("Form", person);
         }
 
-        // POST: People/Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,EmailAddress,StreetAddress,City,State,ZipCode,ClientId")] Person person)
@@ -144,7 +144,7 @@ namespace AquentChallenge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: People/Delete
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -155,7 +155,8 @@ namespace AquentChallenge.Controllers
             return View(person); // TODO: replace this with modal later
         }
 
-        // POST: People/Delete (soft delete)
+
+        // Soft delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -170,6 +171,7 @@ namespace AquentChallenge.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool PersonExists(int id)
         {

@@ -14,9 +14,10 @@ namespace AquentChallenge.Controllers
             _context = context;
         }
 
-        // GET: Clients
+
         public async Task<IActionResult> Index(bool showDeleted = false)
         {
+            // If showDeleted == false hide soft-deleted clients; toggle controlled by UI/query string.
             IQueryable<Client> query = _context.Clients;
 
             if (!showDeleted)
@@ -31,7 +32,7 @@ namespace AquentChallenge.Controllers
             return View(clients);
         }
 
-        // GET: Clients/Details
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -45,17 +46,18 @@ namespace AquentChallenge.Controllers
 
             ViewData["AllPeople"] = contacts;
             ViewData["AssociatedIds"] = contacts.Select(c => c.Id).ToList();
+            // Reuse the "Form" view for a read-only details page
             ViewData["IsReadOnly"] = true;
             return View("Form", client);
         }
 
-        // GET: Clients/Create
+
         public IActionResult Create()
         {
             return View("Form", new Client());
         }
 
-        // POST: Clients/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CompanyName,Website,Phone,Address")] Client client)
@@ -68,7 +70,7 @@ namespace AquentChallenge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clients/Edit
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -76,8 +78,8 @@ namespace AquentChallenge.Controllers
             var client = await _context.Clients.FindAsync(id);
             if (client == null) return NotFound();
 
-            // We only want unassigned contacts so they can be assigned or...
-            // already assigned contacts so they can be unassigned from this Client
+            // We only want unassigned contacts so they can be assigned or already
+            // assigned contacts so they can be unassigned from this Client
             ViewData["AllPeople"] = await _context.People
             .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
             .ToListAsync();
@@ -91,7 +93,7 @@ namespace AquentChallenge.Controllers
             return View("Form", client);
         }
 
-        // POST: Clients/Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(
@@ -106,8 +108,8 @@ namespace AquentChallenge.Controllers
             {
                 // Rebuild view data so page can re-render with errors
 
-                // We only want unassigned contacts so they can be assigned or...
-                // already assigned contacts so they can be unassigned from this Client
+                // We only want unassigned contacts so they can be assigned or already
+                // assigned contacts so they can be unassigned from this Client
                 ViewData["AllPeople"] = await _context.People
                     .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
                     .ToListAsync();
@@ -124,6 +126,7 @@ namespace AquentChallenge.Controllers
 
             try
             {
+                // Update the client record first
                 _context.Update(client);
                 await _context.SaveChangesAsync();
             }
@@ -133,7 +136,9 @@ namespace AquentChallenge.Controllers
                 throw;
             }
 
-            // Safeguard: Ensure only allowed people are updated
+            // Safeguard: Only update people that are not deleted, and are either
+            // unassigned or already assigned to this client. This prevents
+            // users from 'stealing' contacts assigned to other clients
             var allowedPeople = await _context.People
                 .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
                 .ToListAsync();
@@ -151,7 +156,7 @@ namespace AquentChallenge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clients/Delete
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -163,7 +168,8 @@ namespace AquentChallenge.Controllers
             return View(client);
         }
 
-        // POST: Clients/Delete (soft delete)
+
+        // Soft delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

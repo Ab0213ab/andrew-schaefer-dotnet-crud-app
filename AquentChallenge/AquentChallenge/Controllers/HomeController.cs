@@ -13,6 +13,7 @@ namespace AquentChallenge.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
         {
             return View();

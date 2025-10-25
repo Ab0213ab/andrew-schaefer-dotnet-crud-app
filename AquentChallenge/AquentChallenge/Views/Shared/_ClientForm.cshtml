@@ -65,6 +65,9 @@
         {
             bool isChecked = associatedIds.Contains(person.Id);
             <div class="form-check">
+                @* Checkboxes named "SelectedPeople" post as int[] to the controller.
+                   checked attribute is set when person.Id is in AssociatedIds.
+                   disabled is set when the form is read-only. *@
                 <input type="checkbox"
                        class="form-check-input"
                        name="SelectedPeople"

@@ -6,18 +6,13 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.File("logs/aquent.log", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
-
+// Configure Serilog logger
 builder.Host.UseSerilog((ctx, lc) => lc
     .WriteTo.Console()
     .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
     .Enrich.FromLogContext()
     .ReadFrom.Configuration(ctx.Configuration)
 );
-
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -39,11 +34,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Catches non-exception status codes (i.e., 404, 403, 500) and re-executes a controller action to show a clean error page.
-app.UseStatusCodePagesWithReExecute("/Error/StatusCode", "?code={0}");
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// Catches non-exception status codes (i.e., 404, 403, 500) and re-executes a controller action to show a clean error page.
+app.UseStatusCodePagesWithReExecute("/Error/StatusCode", "?code={0}");
 
 app.UseRouting();
 

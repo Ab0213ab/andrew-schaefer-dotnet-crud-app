@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "People";
+    // ViewData["People"] expected to be IEnumerable<dynamic> (Id, FirstName, LastName, ClientName, etc.)
+    // TODO: Change the view to a strongly-typed view mode
     bool showDeleted = Convert.ToBoolean(ViewData["ShowDeleted"]);
     var people = (ViewData["People"] as IEnumerable<dynamic>) ?? Enumerable.Empty<dynamic>();
 }

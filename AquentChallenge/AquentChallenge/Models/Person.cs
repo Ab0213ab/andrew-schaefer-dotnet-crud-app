@@ -28,6 +28,7 @@ namespace AquentChallenge.Models
         [Required, StringLength(5, MinimumLength = 5, ErrorMessage = "Zip code must be 5 digits.")]
         public string ZipCode { get; set; } = string.Empty;
 
+        // Nullable foreign key: Person may be unassigned to any Client (ClientId == null)
         [ForeignKey("Client")]
         public int? ClientId { get; set; }
 

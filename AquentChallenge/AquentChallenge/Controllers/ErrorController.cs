@@ -12,6 +12,7 @@ namespace AquentChallenge.Controllers
             _logger = logger;
         }
 
+
         [Route("Error/Error")]
         public IActionResult Error()
         {
@@ -26,8 +27,9 @@ namespace AquentChallenge.Controllers
             return View();
         }
 
+
         [Route("Error/StatusCode")]
-        public IActionResult StatusCodePage(int code)
+        public new IActionResult StatusCode(int code)
         {
             if (code >= 400)
             {
