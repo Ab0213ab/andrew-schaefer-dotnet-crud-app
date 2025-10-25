@@ -15,15 +15,23 @@ namespace AquentChallenge.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool showDeleted = false)
         {
-            var clients = await _context.Clients
-                .Where(c => !c.IsDeleted)
-                .ToListAsync();
+            IQueryable<Client> query = _context.Clients;
+
+            if (!showDeleted)
+            {
+                query = query.Where(c => !c.IsDeleted);
+            }
+
+            var clients = await query.ToListAsync();
+            // TODO: Add a toggle button in the UI to control this
+            ViewData["ShowDeleted"] = showDeleted;
+
             return View(clients);
         }
 
-        // GET: Clients/Details/5
+        // GET: Clients/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -31,6 +39,11 @@ namespace AquentChallenge.Controllers
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.Id == id);
             if (client == null) return NotFound();
 
+            var contacts = await _context.People
+            .Where(p => p.ClientId == client.Id && !p.IsDeleted)
+            .ToListAsync();
+
+            ViewData["Contacts"] = contacts;
             ViewData["IsReadOnly"] = true;
             return View("Form", client);
         }
@@ -54,13 +67,19 @@ namespace AquentChallenge.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clients/Edit/5
+        // GET: Clients/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
 
             var client = await _context.Clients.FindAsync(id);
             if (client == null) return NotFound();
+
+            var contacts = await _context.People
+            .Where(p => p.ClientId == client.Id && !p.IsDeleted)
+            .ToListAsync();
+
+            ViewData["Contacts"] = contacts;
 
             return View("Form", client);
         }
@@ -85,11 +104,16 @@ namespace AquentChallenge.Controllers
                 if (!ClientExists(client.Id)) return NotFound();
                 throw;
             }
+            var contacts = await _context.People
+            .Where(p => p.ClientId == client.Id && !p.IsDeleted)
+            .ToListAsync();
+
+            ViewData["Contacts"] = contacts;
 
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Clients/Delete/5
+        // GET: Clients/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();

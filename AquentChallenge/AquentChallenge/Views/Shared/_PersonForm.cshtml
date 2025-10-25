@@ -2,68 +2,113 @@
 
 @{
     bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
-    string ro = isReadOnly ? "readonly" : string.Empty;
 }
 
 <div class="mb-3">
     <label asp-for="FirstName" class="form-label">First Name</label>
-    <input asp-for="FirstName" class="form-control" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="FirstName" class="text-danger"></span>
+        <input asp-for="FirstName" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="FirstName" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="LastName" class="form-label">Last Name</label>
-    <input asp-for="LastName" class="form-control" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="LastName" class="text-danger"></span>
+        <input asp-for="LastName" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="LastName" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="EmailAddress" class="form-label">Email Address</label>
-    <input asp-for="EmailAddress" class="form-control" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        <input asp-for="EmailAddress" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="EmailAddress" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="StreetAddress" class="form-label">Street Address</label>
-    <input asp-for="StreetAddress" class="form-control" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="StreetAddress" class="text-danger"></span>
+        <input asp-for="StreetAddress" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="StreetAddress" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="City" class="form-label">City</label>
-    <input asp-for="City" class="form-control" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="City" class="text-danger"></span>
+        <input asp-for="City" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="City" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="State" class="form-label">State</label>
-    <input asp-for="State" class="form-control" maxlength="2" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="State" class="text-danger"></span>
+        <input asp-for="State" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="State" class="form-control" readonly />
     }
 </div>
 
 <div class="mb-3">
     <label asp-for="ZipCode" class="form-label">Zip Code</label>
-    <input asp-for="ZipCode" class="form-control" maxlength="5" />
     @if (!isReadOnly)
     {
         <span asp-validation-for="ZipCode" class="text-danger"></span>
+        <input asp-for="ZipCode" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="ZipCode" class="form-control" readonly />
+    }
+</div>
+
+<div class="mb-3">
+    <label for="ClientId" class="form-label">Client</label>
+    @if (!isReadOnly)
+    {
+        var clients = ViewData["Clients"] as IEnumerable<dynamic>;
+        <select asp-for="ClientId" class="form-select"
+                asp-items="@(new SelectList(clients, "Id", "CompanyName", Model?.ClientId))">
+            <option value="">-- Select Client --</option>
+        </select>
+        <span asp-validation-for="ClientId" class="text-danger"></span>
+    }
+    else
+    {
+        <input class="form-control" readonly
+               value="@(ViewData["ClientName"] ?? "(none)")" />
     }
 </div>

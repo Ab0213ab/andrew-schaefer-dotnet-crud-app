@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Blue-indigo theme button */
+.btn-outline-indigo {
+    color: #b8c4ff; /* soft pale-blue text */
+    border-color: #4c5fd7; /* rich indigo border */
+    transition: all 0.25s ease-in-out;
+}
+
+    .btn-outline-indigo:hover,
+    .btn-outline-indigo:focus {
+        color: #fff; /* bright white on hover */
+        background-color: #4c5fd7; /* fill with indigo */
+        border-color: #4c5fd7;
+        box-shadow: 0 0 10px rgba(123, 102, 255, 0.45);
+    }
