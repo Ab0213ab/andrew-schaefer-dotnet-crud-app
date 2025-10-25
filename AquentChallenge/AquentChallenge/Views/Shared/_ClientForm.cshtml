@@ -2,7 +2,8 @@
 
 @{
     bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
-    var contacts = ViewData["Contacts"] as IEnumerable<AquentChallenge.Models.Person>;
+    var allPeople = ViewData["AllPeople"] as IEnumerable<AquentChallenge.Models.Person>;
+    var associatedIds = ViewData["AssociatedIds"] as List<int> ?? new List<int>();
 }
 
 <div class="mb-3">
@@ -57,24 +58,25 @@
     }
 </div>
 
-@if (contacts != null && contacts.Any())
+@if (allPeople != null && allPeople.Any())
 {
-    <hr />
-    <h5>Associated Contacts</h5>
-    <ul class="list-group mb-3">
-        @foreach (var person in contacts)
+    <div class="form-check-list mb-3">
+        @foreach (var person in allPeople)
         {
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                @($"{person.FirstName} {person.LastName}")
-                <a asp-controller="People"
-                   asp-action="Details"
-                   asp-route-id="@person.Id"
-                   class="btn btn-sm btn-outline-secondary">
-                    View
-                </a>
-            </li>
+            bool isChecked = associatedIds.Contains(person.Id);
+            <div class="form-check">
+                <input type="checkbox"
+                       class="form-check-input"
+                       name="SelectedPeople"
+                       value="@person.Id"
+                       checked="@(isChecked ? "checked" : null)"
+                       disabled="@(isReadOnly ? "disabled" : null)" />
+                <label class="form-check-label">
+                    @($"{person.FirstName} {person.LastName}")
+                </label>
+            </div>
         }
-    </ul>
+    </div>
 }
 else
 {
