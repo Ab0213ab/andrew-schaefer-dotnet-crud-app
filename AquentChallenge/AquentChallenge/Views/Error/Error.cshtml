@@ -1,0 +1,24 @@
+﻿@model Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="text-center py-5">
+    <h1 class="display-5 fw-bold text-danger">Whoops!</h1>
+    <p class="lead mb-4">
+        We're sorry — an unexpected error occurred.
+    </p>
+
+    <p class="text-muted">
+        Something went wrong. Please try again later or contact support.
+    </p>
+
+    @if (Model != null)
+    {
+        <div class="alert alert-light mt-4" role="alert">
+            <strong>Request ID:</strong> @Context.TraceIdentifier
+        </div>
+    }
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">Back to Home</a>
+</section>
