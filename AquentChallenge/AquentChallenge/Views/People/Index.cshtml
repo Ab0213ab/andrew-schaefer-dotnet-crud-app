@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "People";
+    bool showDeleted = Convert.ToBoolean(ViewData["ShowDeleted"]);
+    var people = (ViewData["People"] as IEnumerable<dynamic>) ?? Enumerable.Empty<dynamic>();
+
+}
+
+<h1>All People</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-indigo btn-lg px-4">+ Create New</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Client</th>
+            @if (showDeleted)
+            {
+                <th>Is Deleted</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in people)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.EmailAddress</td>
+                <td>@item.StreetAddress</td>
+                <td>@item.City</td>
+                <td>@item.State</td>
+                <td>@item.ZipCode</td>
+                <td>@item.ClientName</td>
+                @if (showDeleted)
+                {
+                    <td>@item.IsDeleted</td>
+                }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

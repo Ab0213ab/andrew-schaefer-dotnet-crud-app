@@ -1,0 +1,85 @@
+﻿@model AquentChallenge.Models.Client
+
+@{
+    bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
+    var allPeople = ViewData["AllPeople"] as IEnumerable<AquentChallenge.Models.Person>;
+    var associatedIds = ViewData["AssociatedIds"] as List<int> ?? new List<int>();
+}
+
+<div class="mb-3">
+    <label asp-for="CompanyName" class="form-label">Company Name</label>
+    @if (!isReadOnly)
+    {
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+        <input asp-for="CompanyName" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="CompanyName" class="form-control" readonly/>
+    }
+</div>
+
+<div class="mb-3">
+    <label asp-for="Website" class="form-label">Website</label>
+    @if (!isReadOnly)
+    {
+        <span asp-validation-for="Website" class="text-danger"></span>
+        <input asp-for="Website" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Website" class="form-control" readonly />
+    }
+</div>
+
+<div class="mb-3">
+    <label asp-for="Phone" class="form-label">Phone</label>
+    @if (!isReadOnly)
+    {
+        <span asp-validation-for="Phone" class="text-danger"></span>
+        <input asp-for="Phone" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Phone" class="form-control" readonly />
+    }
+</div>
+
+<div class="mb-3">
+    <label asp-for="Address" class="form-label">Address</label>
+    @if (!isReadOnly)
+    {
+        <span asp-validation-for="Address" class="text-danger"></span>
+        <input asp-for="Address" class="form-control" />
+    }
+    else
+    {
+        <input asp-for="Address" class="form-control" readonly />
+    }
+</div>
+
+@if (allPeople != null && allPeople.Any())
+{
+    <div class="form-check-list mb-3">
+        @foreach (var person in allPeople)
+        {
+            bool isChecked = associatedIds.Contains(person.Id);
+            <div class="form-check">
+                <input type="checkbox"
+                       class="form-check-input"
+                       name="SelectedPeople"
+                       value="@person.Id"
+                       checked="@(isChecked ? "checked" : null)"
+                       disabled="@(isReadOnly ? "disabled" : null)" />
+                <label class="form-check-label">
+                    @($"{person.FirstName} {person.LastName}")
+                </label>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <hr />
+    <p class="text-muted fst-italic">No contacts associated with this client.</p>
+}

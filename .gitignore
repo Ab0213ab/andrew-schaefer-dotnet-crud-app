@@ -1,7 +1,90 @@
-.idea/
-*.iml
-target/
-*.log
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+[Aa]pp_Data/
+[Aa]pp_Data_Backup/
+
+# Visual Studio user-specific files
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+logs/
+*.tlog
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.ncb
+*.cache
 *.db-shm
 *.db-wal
+*.db-journal
+
+# Database and local dev files
+*.sqlite
+*.db
+appsettings.Development.json
+
+# Publish output
+publish/
+out/
+
+# Backup & crash dumps
+*.stackdump
+*.dmp
+
+# OS-specific
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Icon?
+
+# Node/Front-end build output (if using npm or libman)
+node_modules/
+dist/
+wwwroot/lib/
+wwwroot/dist/
+wwwroot/js/
+wwwroot/css/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Rider/JetBrains
+.idea/
+*.iml
+
+# Coverage, testing, profiling
+*.coverage
+*.coveragexml
+TestResults/
+*.vsp
+*.vspx
+*.sap
+*.opendb
+*.TestResults/
+*.nunit.xml
+*.trx
+
+# EF Core migrations cache
+Migrations/obj/
+Migrations/bin/
+
+# ======================================
+# End of .gitignore
+# ======================================
