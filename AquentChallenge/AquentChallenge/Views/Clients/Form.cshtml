@@ -1,0 +1,39 @@
+﻿@model AquentChallenge.Models.Client
+
+@{
+    bool isEdit = Model?.Id > 0;
+    bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
+    ViewData["Title"] = isReadOnly
+        ? "View Client"
+        : (isEdit ? "Edit Client" : "Create Client");
+}
+
+<h2 class="mb-3">@ViewData["Title"]</h2>
+
+@if (isReadOnly)
+{
+    <div>
+        <partial name="~/Views/Shared/_ClientForm.cshtml" />
+    </div>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+}
+else
+{
+    <form asp-action="@(isEdit ? "Edit" : "Create")" method="post">
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <partial name="~/Views/Shared/_ClientForm.cshtml" />
+
+        <button type="submit" class="btn btn-primary">
+            @(isEdit ? "Save Changes" : "Create")
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
