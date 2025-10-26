@@ -20,6 +20,11 @@ x86/
 .vscode/
 *.iml
 
+# Logs
+*.log
+logs/
+*.tlog
+
 # Temporary files
 *.tmp
 *.temp
