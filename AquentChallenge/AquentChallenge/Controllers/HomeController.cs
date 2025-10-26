@@ -16,6 +16,7 @@ namespace AquentChallenge.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("GET Home Index called");
             return View();
         }
 
