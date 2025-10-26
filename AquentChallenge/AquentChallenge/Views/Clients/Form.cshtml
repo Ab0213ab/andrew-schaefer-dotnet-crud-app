@@ -1,11 +1,12 @@
-﻿@model AquentChallenge.Models.Client
+﻿@model AquentChallenge.Models.ViewModels.ClientFormViewModel
 
 @{
-    bool isEdit = Model?.Id > 0;
-    bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
-    ViewData["Title"] = isReadOnly
-        ? "View Client"
-        : (isEdit ? "Edit Client" : "Create Client");
+    bool isEdit = Model.Id > 0;
+    bool isReadOnly = Model.IsReadOnly;
+    string pageTitle = isReadOnly
+    ? "View Client"
+    : (isEdit ? "Edit Client" : "Create Client");
+
 }
 
 <h2 class="mb-3">@ViewData["Title"]</h2>

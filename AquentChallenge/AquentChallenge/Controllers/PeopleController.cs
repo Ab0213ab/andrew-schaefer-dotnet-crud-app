@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AquentChallenge.Data;
+using AquentChallenge.Models;
+using AquentChallenge.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AquentChallenge.Data;
-using AquentChallenge.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AquentChallenge.Controllers
 {
@@ -21,13 +22,39 @@ namespace AquentChallenge.Controllers
             _logger = logger;
         }
 
-
-        private void LoadClients()
+        private PersonFormViewModel MapToViewModel(Person person, IEnumerable<Client>? clients = null, bool isReadOnly = false, string? clientName = null)
         {
-            ViewData["Clients"] = _context.Clients
-                .Where(c => !c.IsDeleted)
-                .Select(c => new { c.Id, c.CompanyName })
-                .ToList();
+            return new PersonFormViewModel
+            {
+                Id = person.Id,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                EmailAddress = person.EmailAddress,
+                StreetAddress = person.StreetAddress,
+                City = person.City,
+                State = person.State,
+                ZipCode = person.ZipCode,
+                ClientId = person.ClientId,
+                Clients = clients,
+                IsReadOnly = isReadOnly,
+                ClientName = clientName
+            };
+        }
+
+        private Person MapToEntity(PersonFormViewModel vm)
+        {
+            return new Person
+            {
+                Id = vm.Id,
+                FirstName = vm.FirstName,
+                LastName = vm.LastName,
+                EmailAddress = vm.EmailAddress,
+                StreetAddress = vm.StreetAddress,
+                City = vm.City,
+                State = vm.State,
+                ZipCode = vm.ZipCode,
+                ClientId = vm.ClientId
+            };
         }
 
 
@@ -88,39 +115,45 @@ namespace AquentChallenge.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients
-                .Where(c => c.Id == person.ClientId)
-                .Select(c => c.CompanyName)
-                .FirstOrDefaultAsync();
+            var clientName = await _context.Clients
+            .Where(c => c.Id == person.ClientId)
+            .Select(c => c.CompanyName)
+            .FirstOrDefaultAsync() ?? "(none)";
 
-            ViewData["ClientName"] = client ?? "(none)";
-            ViewData["IsReadOnly"] = true;
-
-            return View("Form", person);
+            var vm = MapToViewModel(person, null, isReadOnly: true, clientName: clientName);
+            return View("Form", vm);
         }
 
-        public IActionResult Create()
+
+        public async Task<IActionResult> Create()
         {
             _logger.LogInformation("GET People Create called");
-            LoadClients();
-            return View("Form", new Person());
+            var clients = await _context.Clients
+                .Where(c => !c.IsDeleted)
+                .ToListAsync();
+
+            var vm = new PersonFormViewModel { Clients = clients };
+            return View("Form", vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,EmailAddress,StreetAddress,City,State,ZipCode,ClientId")] Person person)
+        public async Task<IActionResult> Create(PersonFormViewModel vm)
         {
-            var name = $"{person.FirstName} {person.LastName}";
+            var name = $"{vm.FirstName} {vm.LastName}";
             _logger.LogInformation("POST People Create called for Name={Name}", name);
 
             if (!ModelState.IsValid)
             {
                 _logger.LogInformation("Create ModelState invalid for Name={Name}", name);
-                LoadClients();
-                return View("Form", person);
+                vm.Clients = await _context.Clients
+                    .Where(c => !c.IsDeleted)
+                    .ToListAsync();
+                return View("Form", vm);
             }
 
+            var person = MapToEntity(vm);
             _context.Add(person);
             await _context.SaveChangesAsync();
 
@@ -140,39 +173,43 @@ namespace AquentChallenge.Controllers
             }
 
             var person = await _context.People.FindAsync(id);
-
             if (person == null)
             {
                 _logger.LogWarning("Client not found for Edit (id={Id})", id);
                 return NotFound();
             }
 
-            LoadClients();
-            return View("Form", person);
+            var clients = await _context.Clients
+                .Where(c => !c.IsDeleted)
+                .ToListAsync();
+
+            var vm = MapToViewModel(person, clients);
+            return View("Form", vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id
-            , [Bind("Id,FirstName,LastName,EmailAddress,StreetAddress,City,State,ZipCode,ClientId")] Person person
-            )
+        public async Task<IActionResult> Edit(int id, PersonFormViewModel vm)
         {
             _logger.LogInformation("POST People Edit called (id={Id})", id);
 
-            if (id != person.Id)
+            if (id != vm.Id)
             {
-                _logger.LogWarning("Edit id mismatch (route id={RouteId} body id={BodyId})", id, person.Id);
+                _logger.LogWarning("Edit id mismatch (route id={RouteId} body id={BodyId})", id, vm.Id);
                 return NotFound();
             }
 
             if (!ModelState.IsValid)
             {
-                _logger.LogInformation("Edit ModelState invalid for client {Id}", person.Id);
-                LoadClients();
-                return View("Form", person);
+                _logger.LogInformation("Edit ModelState invalid for client {Id}", vm.Id);
+                vm.Clients = await _context.Clients
+                    .Where(c => !c.IsDeleted)
+                    .ToListAsync();
+                return View("Form", vm);
             }
+
+            var person = MapToEntity(vm);
 
             try
             {
@@ -183,10 +220,10 @@ namespace AquentChallenge.Controllers
             catch (DbUpdateConcurrencyException ex)
             {
                 _logger.LogWarning(ex, "Concurrency exception updating person {Id}", person.Id);
-                if (!PersonExists(person.Id)) return NotFound();
+                if (!_context.People.Any(e => e.Id == person.Id))
+                    return NotFound();
                 throw;
             }
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -210,12 +247,6 @@ namespace AquentChallenge.Controllers
                 _logger.LogWarning("DeleteConfirmed could not find person {Id}", id);
             }
             return RedirectToAction(nameof(Index));
-        }
-
-
-        private bool PersonExists(int id)
-        {
-            return _context.People.Any(e => e.Id == id);
         }
     }
 }

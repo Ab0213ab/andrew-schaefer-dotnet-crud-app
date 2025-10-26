@@ -1,9 +1,12 @@
-﻿@model AquentChallenge.Models.Person
+﻿@model AquentChallenge.Models.ViewModels.PersonFormViewModel
 
 @{
-    bool isEdit = Model?.Id > 0;
-    bool isReadOnly = (ViewData["IsReadOnly"] as bool?) ?? false;
-    ViewData["Title"] = isReadOnly ? "View Person" : (isEdit ? "Edit Person" : "Create Person");
+    bool isEdit = Model.Id > 0;
+    bool isReadOnly = Model.IsReadOnly;
+    string pageTitle = isReadOnly
+    ? "View Person"
+    : (isEdit ? "Edit Person" : "Create Person");
+
 }
 
 <h2 class="mb-3">@ViewData["Title"]</h2>

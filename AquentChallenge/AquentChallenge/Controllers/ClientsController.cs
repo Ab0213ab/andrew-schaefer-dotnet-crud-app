@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using AquentChallenge.Data;
+﻿using AquentChallenge.Data;
 using AquentChallenge.Models;
+using AquentChallenge.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AquentChallenge.Controllers
 {
@@ -14,6 +15,36 @@ namespace AquentChallenge.Controllers
         {
             _context = context;
             _logger = logger;
+        }
+
+        private ClientFormViewModel MapToViewModel(Client client,
+            IEnumerable<Person>? allPeople = null,
+            List<int>? associatedIds = null,
+            bool isReadOnly = false)
+        {
+            return new ClientFormViewModel
+            {
+                Id = client.Id,
+                CompanyName = client.CompanyName,
+                Website = client.Website,
+                Phone = client.Phone,
+                Address = client.Address,
+                AllPeople = allPeople,
+                AssociatedIds = associatedIds,
+                IsReadOnly = isReadOnly
+            };
+        }
+
+        private Client MapToEntity(ClientFormViewModel vm)
+        {
+            return new Client
+            {
+                Id = vm.Id,
+                CompanyName = vm.CompanyName,
+                Website = vm.Website,
+                Phone = vm.Phone,
+                Address = vm.Address
+            };
         }
 
 
@@ -46,7 +77,7 @@ namespace AquentChallenge.Controllers
                 _logger.LogWarning("Details called with null id");
                 return NotFound();
             }
-
+            //
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.Id == id);
             if (client == null)
             {
@@ -58,35 +89,43 @@ namespace AquentChallenge.Controllers
             .Where(p => p.ClientId == client.Id && !p.IsDeleted)
             .ToListAsync();
 
-            ViewData["AllPeople"] = contacts;
-            ViewData["AssociatedIds"] = contacts.Select(c => c.Id).ToList();
-            // Reuse the "Form" view for a read-only details page
-            ViewData["IsReadOnly"] = true;
+            var vm = MapToViewModel(client, contacts, contacts.Select(c => c.Id).ToList(), isReadOnly: true);
 
             _logger.LogDebug("Details for client {Id} returning Form view with {Contacts} contacts", id, contacts.Count);
-            return View("Form", client);
+            return View("Form", vm);
         }
 
-
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             _logger.LogInformation("GET Clients Create called");
-            return View("Form", new Client());
+
+            var vm = new ClientFormViewModel
+            {
+                AllPeople = await _context.People
+                    .Where(p => !p.IsDeleted)
+                    .ToListAsync()
+            };
+
+            return View("Form", vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompanyName,Website,Phone,Address")] Client client)
+        public async Task<IActionResult> Create(ClientFormViewModel vm)
         {
-            _logger.LogInformation("POST Clients Create called for CompanyName={Company}", client.CompanyName);
+            _logger.LogInformation("POST Clients Create called for CompanyName={Company}", vm.CompanyName);
 
             if (!ModelState.IsValid)
             {
-                _logger.LogInformation("Create ModelState invalid for CompanyName={Company}", client.CompanyName);
-                return View("Form", client);
-            }   
+                _logger.LogInformation("Create ModelState invalid for CompanyName={Company}", vm.CompanyName);
+                vm.AllPeople = await _context.People
+                    .Where(p => !p.IsDeleted)
+                    .ToListAsync();
+                return View("Form", vm);
+            }
 
+            var client = MapToEntity(vm);
             _context.Add(client);
             await _context.SaveChangesAsync();
 
@@ -106,6 +145,7 @@ namespace AquentChallenge.Controllers
             }
 
             var client = await _context.Clients.FindAsync(id);
+
             if (client == null)
             {
                 _logger.LogWarning("Client not found for Edit (id={Id})", id);
@@ -114,93 +154,72 @@ namespace AquentChallenge.Controllers
 
             // We only want unassigned contacts so they can be assigned or already
             // assigned contacts so they can be unassigned from this Client
-            ViewData["AllPeople"] = await _context.People
-            .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
-            .ToListAsync();
+            var allPeople = await _context.People
+                .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
+                .ToListAsync();
 
             // Used to pre-checked associated UI checkboxes
-            ViewData["AssociatedIds"] = await _context.People
-            .Where(p => !p.IsDeleted && p.ClientId == client.Id)
-            .Select(p => p.Id)
-            .ToListAsync();
+            var associatedIds = allPeople
+                .Where(p => p.ClientId == client.Id)
+                .Select(p => p.Id)
+                .ToList();
 
-            return View("Form", client);
+            var vm = MapToViewModel(client, allPeople, associatedIds);
+            return View("Form", vm);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(
-            int id
-            , [Bind("Id,CompanyName,Website,Phone,Address")] Client client
-            , int[] SelectedPeople
-            )
+        public async Task<IActionResult> Edit(int id, ClientFormViewModel vm, int[] SelectedPeople)
         {
-            _logger.LogInformation("POST Clients Edit called (id={Id}) SelectedPeopleCount={Count}", id, SelectedPeople?.Length ?? 0);
+            _logger.LogInformation("POST Clients Edit called (id={Id})", id);
 
-            if (id != client.Id)
+            if (id != vm.Id)
             {
-                _logger.LogWarning("Edit id mismatch (route id={RouteId} body id={BodyId})", id, client.Id);
+                _logger.LogWarning("Edit id mismatch (route id={RouteId} body id={BodyId})", id, vm.Id);
                 return NotFound();
             }
 
+
             if (!ModelState.IsValid)
             {
-                _logger.LogInformation("Edit ModelState invalid for client {Id}", client.Id);
-                // Rebuild view data so page can re-render with errors
-
-                // We only want unassigned contacts so they can be assigned or already
-                // assigned contacts so they can be unassigned from this Client
-                ViewData["AllPeople"] = await _context.People
-                    .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
+                _logger.LogInformation("Edit ModelState invalid for client {Id}", vm.Id);
+                vm.AllPeople = await _context.People
+                    .Where(p => !p.IsDeleted)
                     .ToListAsync();
-
-                // Used to pre-checked associated UI checkboxes
-                ViewData["AssociatedIds"] = await _context.People
-                    .Where(p => !p.IsDeleted && p.ClientId == client.Id)
-                    .Select(p => p.Id)
-                    .ToListAsync();
-
-                ViewData["IsReadOnly"] = false;
-                return View("Form", client);
+                return View("Form", vm);
             }
 
-            try
-            {
-                // Update the client record first
-                _context.Update(client);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation("Updated client {Id}", client.Id);
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                _logger.LogWarning(ex, "Concurrency exception updating client {Id}", client.Id);
-                if (!ClientExists(client.Id)) return NotFound();
-                throw;
-            }
+            var client = MapToEntity(vm);
+            // Update the client record first
+            _context.Update(client);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("Updated client {Id}", client.Id);
 
-            // Safeguard: Only update people that are not deleted, and are either
-            // unassigned or already assigned to this client. This prevents
-            // users from 'stealing' contacts assigned to other clients
             var allowedPeople = await _context.People
                 .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
                 .ToListAsync();
 
-            // For when no checkboxes are checked
             SelectedPeople ??= Array.Empty<int>();
-            _logger.LogDebug("AllowedPeople={AllowedCount}, SelectedPeople={SelectedCount}", allowedPeople.Count, SelectedPeople.Length);
 
             foreach (var person in allowedPeople)
             {
                 var before = person.ClientId;
                 person.ClientId = SelectedPeople.Contains(person.Id) ? client.Id : (int?)null;
+
                 if (before != person.ClientId)
                 {
-                    _logger.LogInformation("Person {PersonId} ClientId changed {Before} -> {After}", person.Id, before?.ToString() ?? "null", person.ClientId?.ToString() ?? "null");
+                    _logger.LogInformation(
+                        "Person {PersonId} ClientId changed {Before} -> {After}",
+                        person.Id,
+                        before?.ToString() ?? "null",
+                        person.ClientId?.ToString() ?? "null");
                 }
             }
 
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Updated client {Id}", client.Id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -226,12 +245,6 @@ namespace AquentChallenge.Controllers
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-
-        private bool ClientExists(int id)
-        {
-            return _context.Clients.Any(e => e.Id == id);
         }
     }
 }

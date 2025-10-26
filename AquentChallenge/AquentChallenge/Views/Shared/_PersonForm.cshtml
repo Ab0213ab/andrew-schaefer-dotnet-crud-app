@@ -1,7 +1,8 @@
-﻿@model AquentChallenge.Models.Person
+﻿@model AquentChallenge.Models.ViewModels.PersonFormViewModel
 
 @{
-    bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
+    bool isReadOnly = Model.IsReadOnly;
+    var clients = Model.Clients ?? Enumerable.Empty<AquentChallenge.Models.Client>();
 }
 
 <div class="mb-3">
@@ -99,16 +100,14 @@
     <label for="ClientId" class="form-label">Client</label>
     @if (!isReadOnly)
     {
-        var clients = ViewData["Clients"] as IEnumerable<dynamic>;
         <select asp-for="ClientId" class="form-select"
-                asp-items="@(new SelectList(clients, "Id", "CompanyName", Model?.ClientId))">
+                asp-items="@(new SelectList(clients, "Id", "CompanyName", Model.ClientId))">
             <option value="">-- Select Client --</option>
         </select>
         <span asp-validation-for="ClientId" class="text-danger"></span>
     }
     else
     {
-        <input class="form-control" readonly
-               value="@(ViewData["ClientName"] ?? "(none)")" />
+        <input class="form-control" readonly value="@(Model.ClientName ?? "(none)")" />
     }
 </div>

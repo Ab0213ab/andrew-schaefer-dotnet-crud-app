@@ -1,9 +1,9 @@
-﻿@model AquentChallenge.Models.Client
+﻿@model AquentChallenge.Models.ViewModels.ClientFormViewModel
 
 @{
-    bool isReadOnly = Convert.ToBoolean(ViewData["IsReadOnly"]);
-    var allPeople = ViewData["AllPeople"] as IEnumerable<AquentChallenge.Models.Person>;
-    var associatedIds = ViewData["AssociatedIds"] as List<int> ?? new List<int>();
+    bool isReadOnly = Model.IsReadOnly;
+    var allPeople = Model.AllPeople ?? Enumerable.Empty<AquentChallenge.Models.Person>();
+    var associatedIds = Model.AssociatedIds ?? new List<int>();
 }
 
 <div class="mb-3">
@@ -58,7 +58,7 @@
     }
 </div>
 
-@if (allPeople != null && allPeople.Any())
+@if (allPeople.Any())
 {
     <div class="form-check-list mb-3">
         @foreach (var person in allPeople)
