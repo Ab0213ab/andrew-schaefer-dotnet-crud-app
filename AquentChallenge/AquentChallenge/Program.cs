@@ -34,12 +34,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Catches non-exception status codes (i.e., 404, 403, 500) and re-executes a controller action to show a clean error page.
+// Catches non-exception status codes (i.e., 404, 403, 500) and re-executes a controller
+// action to show a clean error page.
 app.UseStatusCodePagesWithReExecute("/Error/StatusCode", "?code={0}");
 
 app.UseRouting();

@@ -102,16 +102,13 @@ else
                         $(`a.delete-btn[data-id='${deleteId}']`).closest("tr").fadeOut(500, function() {
                             $(this).remove();
 
-
                             // Check if table is empty now
                             if ($("table tbody tr").length === 0) {
-
-                                // Find the main container (same parent as your table)
+                                // Find the main container so we can put the alert in the right place
                                 const container = $("table").closest(".container, .container-fluid, main, section");
 
                                 $("table").remove();
 
-                                // Replace with the alert in that same container
                                 container.append(`
                                     <div class="alert alert-info mt-4 text-center" role="alert">
                                         No people found. Click <strong>"Create New"</strong> to add a person.
