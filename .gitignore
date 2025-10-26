@@ -24,6 +24,7 @@ x86/
 *.log
 logs/
 *.tlog
+AquentChallenge/AquentChallenge/logs/
 
 # Temporary files
 *.tmp
