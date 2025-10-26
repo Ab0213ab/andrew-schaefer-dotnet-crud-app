@@ -88,7 +88,7 @@ namespace AquentChallenge.Controllers
                                 })
                         .ToListAsync();
             _logger.LogDebug("Index returned {Count} people", people.Count);
-            // TODO: Create a view model for this instead of using anonymous types
+            // TODO: Create a PersonIndexViewModel and use it
             ViewData["People"] = people;
             // TODO: Add a toggle button in the UI to control this
             ViewData["ShowDeleted"] = showDeleted;
@@ -104,6 +104,7 @@ namespace AquentChallenge.Controllers
             if (id == null)
             {
                 _logger.LogWarning("Details called with null id");
+                ViewData["Title"] = "Person Details";
                 return NotFound();
             }
 
@@ -112,6 +113,7 @@ namespace AquentChallenge.Controllers
             if (person == null)
             {
                 _logger.LogWarning("Person not found (id={Id})", id);
+                ViewData["Title"] = "Person Details";
                 return NotFound();
             }
 
@@ -121,6 +123,7 @@ namespace AquentChallenge.Controllers
             .FirstOrDefaultAsync() ?? "(none)";
 
             var vm = MapToViewModel(person, null, isReadOnly: true, clientName: clientName);
+            ViewData["Title"] = "Person Details";
             return View("Form", vm);
         }
 
@@ -133,6 +136,7 @@ namespace AquentChallenge.Controllers
                 .ToListAsync();
 
             var vm = new PersonFormViewModel { Clients = clients };
+            ViewData["Title"] = "Person Create";
             return View("Form", vm);
         }
 
@@ -150,15 +154,30 @@ namespace AquentChallenge.Controllers
                 vm.Clients = await _context.Clients
                     .Where(c => !c.IsDeleted)
                     .ToListAsync();
+                ViewData["Title"] = "Person Create";
                 return View("Form", vm);
             }
 
-            var person = MapToEntity(vm);
-            _context.Add(person);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var person = MapToEntity(vm);
+                _context.Add(person);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Created person {person.Id} ({name})", person.Id, name);
 
-            _logger.LogInformation("Created person {person.Id} ({name})", person.Id, name);
-            return RedirectToAction(nameof(Index));
+                TempData["ToastMessage"] = "Person created successfully!";
+                TempData["ToastType"] = "success";
+
+                return RedirectToAction(nameof(Index));
+            }
+            // Global error handling is already configured in Program.cs, but I want to specifically
+            // log update exceptions here to showcase enterprise level error handling.
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Error creating person Name={Name}", name);
+                ViewData["Title"] = "Person Create";
+                return View("Form", vm);
+            }
         }
 
 
@@ -169,6 +188,7 @@ namespace AquentChallenge.Controllers
             if (id == null)
             {
                 _logger.LogWarning("Edit called with null id");
+                ViewData["Title"] = "Person Edit";
                 return NotFound();
             }
 
@@ -176,6 +196,7 @@ namespace AquentChallenge.Controllers
             if (person == null)
             {
                 _logger.LogWarning("Client not found for Edit (id={Id})", id);
+                ViewData["Title"] = "Person Edit";
                 return NotFound();
             }
 
@@ -184,6 +205,7 @@ namespace AquentChallenge.Controllers
                 .ToListAsync();
 
             var vm = MapToViewModel(person, clients);
+            ViewData["Title"] = "Person Edit";
             return View("Form", vm);
         }
 
@@ -197,6 +219,7 @@ namespace AquentChallenge.Controllers
             if (id != vm.Id)
             {
                 _logger.LogWarning("Edit id mismatch (route id={RouteId} body id={BodyId})", id, vm.Id);
+                ViewData["Title"] = "Person Edit";
                 return NotFound();
             }
 
@@ -206,6 +229,7 @@ namespace AquentChallenge.Controllers
                 vm.Clients = await _context.Clients
                     .Where(c => !c.IsDeleted)
                     .ToListAsync();
+                ViewData["Title"] = "Person Edit";
                 return View("Form", vm);
             }
 
@@ -213,15 +237,23 @@ namespace AquentChallenge.Controllers
 
             try
             {
+                // Update the client record first
                 _context.Update(person);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Updated person {Id}", person.Id);
+                TempData["ToastMessage"] = "Person updated successfully!";
+                TempData["ToastType"] = "info";
             }
+            // Global error handling is already configured in Program.cs, but I want to specifically
+            // log concurrency exceptions here to showcase enterprise level error handling.
             catch (DbUpdateConcurrencyException ex)
             {
                 _logger.LogWarning(ex, "Concurrency exception updating person {Id}", person.Id);
                 if (!_context.People.Any(e => e.Id == person.Id))
+                {
+                    ViewData["Title"] = "Person Edit";
                     return NotFound();
+                }    
                 throw;
             }
             return RedirectToAction(nameof(Index));
@@ -241,6 +273,8 @@ namespace AquentChallenge.Controllers
                 _context.Update(person);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Soft-deleted person {Id}", id);
+                TempData["ToastMessage"] = "Person deleted successfully!";
+                TempData["ToastType"] = "danger";
             }
             else
             {

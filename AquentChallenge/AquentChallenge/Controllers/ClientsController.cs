@@ -3,6 +3,7 @@ using AquentChallenge.Models;
 using AquentChallenge.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace AquentChallenge.Controllers
 {
@@ -60,6 +61,7 @@ namespace AquentChallenge.Controllers
             }
 
             var clients = await query.ToListAsync();
+            // TODO: Create a ClientIndexViewModel and use it
             _logger.LogDebug("Index returned {Count} clients", clients.Count);
             // TODO: Add a toggle button in the UI to control this
             ViewData["ShowDeleted"] = showDeleted;
@@ -92,6 +94,7 @@ namespace AquentChallenge.Controllers
             var vm = MapToViewModel(client, contacts, contacts.Select(c => c.Id).ToList(), isReadOnly: true);
 
             _logger.LogDebug("Details for client {Id} returning Form view with {Contacts} contacts", id, contacts.Count);
+            ViewData["Title"] = "Client Details";
             return View("Form", vm);
         }
 
@@ -105,7 +108,7 @@ namespace AquentChallenge.Controllers
                     .Where(p => !p.IsDeleted)
                     .ToListAsync()
             };
-
+            ViewData["Title"] = "Client Create";
             return View("Form", vm);
         }
 
@@ -125,12 +128,26 @@ namespace AquentChallenge.Controllers
                 return View("Form", vm);
             }
 
-            var client = MapToEntity(vm);
-            _context.Add(client);
-            await _context.SaveChangesAsync();
+            try 
+            {
+                var client = MapToEntity(vm);
+                _context.Add(client);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Created client {ClientId} ({Company})", client.Id, client.CompanyName);
 
-            _logger.LogInformation("Created client {ClientId} ({Company})", client.Id, client.CompanyName);
-            return RedirectToAction(nameof(Index));
+                TempData["ToastMessage"] = "Client created successfully!";
+                TempData["ToastType"] = "success";
+
+                return RedirectToAction(nameof(Index));
+            }
+            // Global error handling is already configured in Program.cs, but I want to specifically
+            // log update exceptions here to showcase enterprise level error handling.
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Error creating client {Company}", vm.CompanyName);
+                return View("Form", vm);
+            }
+            
         }
 
 
@@ -165,6 +182,7 @@ namespace AquentChallenge.Controllers
                 .ToList();
 
             var vm = MapToViewModel(client, allPeople, associatedIds);
+            ViewData["Title"] = "Client Edit";
             return View("Form", vm);
         }
 
@@ -188,14 +206,33 @@ namespace AquentChallenge.Controllers
                 vm.AllPeople = await _context.People
                     .Where(p => !p.IsDeleted)
                     .ToListAsync();
+                ViewData["Title"] = "Client Edit";
                 return View("Form", vm);
             }
 
             var client = MapToEntity(vm);
-            // Update the client record first
-            _context.Update(client);
-            await _context.SaveChangesAsync();
-            _logger.LogInformation("Updated client {Id}", client.Id);
+
+            try
+            {
+                // Update the client record first
+                _context.Update(client);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Updated client {Id}", client.Id);
+                TempData["ToastMessage"] = "Client updated successfully!";
+                TempData["ToastType"] = "info";
+
+            }
+            // Global error handling is already configured in Program.cs, but I want to specifically
+            // log concurrency exceptions here to showcase enterprise level error handling.
+            catch (DbUpdateConcurrencyException ex)
+            {
+                _logger.LogWarning(ex, "Concurrency exception updating person {Id}", client.Id);
+                if (!_context.People.Any(e => e.Id == client.Id))
+                ViewData["Title"] = "Client Edit";
+                return NotFound();
+                throw;
+
+            }
 
             var allowedPeople = await _context.People
                 .Where(p => !p.IsDeleted && (p.ClientId == null || p.ClientId == client.Id))
@@ -238,6 +275,8 @@ namespace AquentChallenge.Controllers
                 _context.Update(client);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Soft-deleted client {Id}", id);
+                TempData["ToastMessage"] = "Client deleted successfully!";
+                TempData["ToastType"] = "danger";
             }
             else
             {

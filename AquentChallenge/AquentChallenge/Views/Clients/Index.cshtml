@@ -106,6 +106,9 @@ else
                     data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() },
                     success: function () {
                         $("#deleteModal").modal("hide");
+
+                        showVueToast("Client deleted successfully!", "danger");
+
                         $(`a.delete-btn[data-id='${deleteId}']`).closest("tr").fadeOut(500, function() {
                             $(this).remove();
 
