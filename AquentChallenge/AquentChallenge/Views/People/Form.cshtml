@@ -24,10 +24,21 @@ else
         </button>
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </form>
-    <!-- For unobtrusive validation -->
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
+
+}
+
+<!-- For unobtrusive validation -->
+@section Scripts {
+    <!-- jQuery Validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+            integrity="sha512-Yc+5wJp3oeJMWAnktdC+GJ+7hzE4XjIxEfw8j+1hXnQ02Z+3Wyi4JQTo3E4dD7tkXhMC5QaXfSktkTz4JvKz1w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- jQuery Validation Unobtrusive -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"
+            integrity="sha512-hhtSkgD8gZQkvlJ6DjJ1yytZ6D7ptN0BqJ8GVybmI2eYck1+Vb7F8pR2U8yUJv91t3vBuPo1F7n6hVuG+ok2Bg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 }
 
 
