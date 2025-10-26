@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<AquentChallenge.Models.Client>
+@Html.AntiForgeryToken()
 
 @{
     ViewData["Title"] = "Index";
@@ -70,7 +71,10 @@ else
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">
                         <i class="bi bi-eye"></i> Details
                     </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                    <a href="javascript:void(0)"
+                        class="btn btn-sm btn-outline-danger delete-btn"
+                        data-id="@item.Id"
+                        data-name="@item.CompanyName">
                         <i class="bi bi-trash"></i> Delete
                     </a>
                 </div>
@@ -80,3 +84,57 @@ else
     </tbody>
 </table>
 }
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            let deleteId = null;
+
+            $(".delete-btn").click(function () {
+                deleteId = $(this).data("id");
+                const name = $(this).data("name");
+                $("#deleteModal .modal-body").text(`Are you sure you want to delete "${name}"?`);
+                $("#deleteModal").modal("show");
+            });
+
+            $("#confirmDeleteBtn").click(function () {
+                if (!deleteId) return;
+
+                $.ajax({
+                    url: `/Clients/Delete/${deleteId}`,
+                    type: "POST",
+                    data: { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() },
+                    success: function () {
+                        $("#deleteModal").modal("hide");
+                        $(`a.delete-btn[data-id='${deleteId}']`).closest("tr").fadeOut(500, function() {
+                            $(this).remove();
+
+
+                            // Check if table is empty now
+                            if ($("table tbody tr").length === 0) {
+
+                                // Find the main container (same parent as your table)
+                                const container = $("table").closest(".container, .container-fluid, main, section");
+
+                                $("table").remove();
+
+                                // Replace with the alert in that same container
+                                container.append(`
+                                    <div class="alert alert-info mt-4 text-center" role="alert">
+                                        No clients found. Click <strong>"Create New"</strong> to add a client.
+                                    </div>
+                                `);   
+                            }
+                        });
+                    },
+                    error: function () {
+                        alert("Error deleting client. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+

@@ -157,19 +157,7 @@ namespace AquentChallenge.Controllers
         }
 
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var client = await _context.Clients.FirstOrDefaultAsync(c => c.Id == id);
-            if (client == null) return NotFound();
-
-            // TODO: Replace this with a modal later
-            return View(client);
-        }
-
-
-        // Soft delete
+        // "Soft" delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
