@@ -206,22 +206,18 @@ All forms are protected automatically; validation occurs before controller logic
 
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/landing.png) 
 
-Credential Authorization/Input Validation   |  Responsiveness           
-:-------------------------:|:-------------------------:
-![ScreenShot](includes/images/functionalityScreenShots/ssLoginE.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssResponsive.png)
+Client and Server Side Validation           
+![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/PersonFormValid.png) 
 
-Minimalistic, Modern Design       |  Intuitive Usability             
-:-------------------------:|:-------------------------:
-![ScreenShot](includes/images/functionalityScreenShots/ssHome1.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssHome2.png)
+Modern UI Techniques using Vue.js, Bootstrap5, and jQuery
+![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/clientToast.png) 
+![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/modal.png)
 
-BootStrap Front-End Techniques   |  jQuery DataTables           
-:-------------------------:|:-------------------------:
-![ScreenShot](includes/images/functionalityScreenShots/ssModal.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssViewCo.png)
+Custom Error Pages
+![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/error.png)
 
-Full CRUD Operation Support   |  Full CRUD Operation Support           
-:-------------------------:|:-------------------------:
-![ScreenShot](includes/images/functionalityScreenShots/ssEditUser.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssDelUser.png)
-
+Robust Logging
+![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/log.png)
 
 [Back to Table of Contents](#table-of-contents)
 ---
