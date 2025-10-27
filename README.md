@@ -74,7 +74,6 @@ This project could be production-ready with minimal additional testing or user a
 | Razor HTML Encoding | JSTL `<c:out>` | Razor encodes all dynamic output by default (prevents XSS) |
 | [ValidateAntiForgeryToken] | Spring Security CSRF Token | Cross-Site Request Forgery protection |
 | SQLite + EF Migrations | H2 + Liquibase/Flyway | Embedded DB with schema migrations |
-
 | NuGet | Maven | Dependency management and build system |
 
 
