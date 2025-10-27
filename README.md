@@ -1,7 +1,15 @@
 # Aquent Challenge – Enterprise-Grade ASP.NET MVC CRUD Application
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Tech Stack](#tech-stack)
+3. [Acceptance Criteria](#acceptance-criteria)
+4. [Project Structure and Features](#project-structure-and-features)
+5. [Functionality Screenshots](#functionality-screenshots)
+6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
+
 ## 1. Overview
-The **Aquent Challenge** project represents a **self-contained enterprise feature slice**, designed to mimic how production-ready systems are built in industry.  
+The **Aquent Challenge** project represents a **self-contained enterprise feature slice**, designed to mimic how production-ready systems are built.  
 While the task is a simple CRUD application, its structure, error handling, validation, and logging follow enterprise development standards.  
 
 The project demonstrates:
@@ -68,7 +76,7 @@ Each story and its requirements were fully implemented.
 | Viewing a Client shows associated People | LINQ join with client filter | `/Controllers/ClientsController.cs` |
 | Editing a Client allows adding/removing People | Checkbox list for associated contacts | `/Views/Shared/_ClientForm.cshtml` |
 
-### Story #2 – Client-Side Styling & Validation
+### Story #2 – Client-Side Styling and Validation
 | Requirement | Implementation | File/Path |
 |--------------|----------------|-----------|
 | Client-side validation | jQuery Validation + DataAnnotations | `/Views/Shared/_ValidationScriptsPartial.cshtml` |
@@ -89,7 +97,7 @@ Each story and its requirements were fully implemented.
 
 ---
 
-## 4. Project Structure & Features
+## 4. Project Structure and Features
 
 ### 4.1 Data Model (Entities & ViewModels)
 - **Entities:** Define core schema and relationships (Clients–People).  
@@ -173,7 +181,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ---
 
-### 4.9 Functionality Screenshots
+## Functionality Screenshots
 ![Clients Index Page](wwwroot/images/readme/clients-index.png)
 ![Person Form – Create](wwwroot/images/readme/person-create.png)
 ![Toast Notifications](wwwroot/images/readme/toast-success.png)
@@ -188,24 +196,3 @@ All forms are protected automatically; validation occurs before controller logic
 - Future additions: authentication, authorization, and deployment automation.
 
 ---
-
-## 6. Setup & Run Instructions
-
-### Prerequisites
-- [.NET 8 SDK](https://dotnet.microsoft.com/download)
-- SQLite (bundled by default)
-
-### Run Locally
-```bash
-# Clone repository
-git clone https://github.com/<your-username>/aquent-challenge.git
-cd aquent-challenge
-
-# Restore dependencies
-dotnet restore
-
-# Apply migrations
-dotnet ef database update
-
-# Run the app
-dotnet run
