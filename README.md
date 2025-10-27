@@ -20,7 +20,7 @@
        - [Bootswatch Materia Theme](#bootswatch-materia-theme)
    - [Security](#security)
    - [Architecture and Key Decisions](#architecture--key-decisions)
-5. [Functionality Screenshots](#5-functionality-screenshots)
+5. [Functionality Screenshots](functionality-screenshots)
 6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
 
 
@@ -204,7 +204,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ## Functionality Screenshots
 
-![ScreenShot](wwwroot/images/landing.png) 
+![ScreenShot](./wwwroot/images/landing.png) 
 
 Credential Authorization/Input Validation   |  Responsiveness           
 :-------------------------:|:-------------------------:
