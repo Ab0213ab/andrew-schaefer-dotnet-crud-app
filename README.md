@@ -21,6 +21,7 @@ The project demonstrates:
 
 This project could be production-ready with minimal additional testing or user authentication.
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## 2. Tech Stack
@@ -59,6 +60,7 @@ This project could be production-ready with minimal additional testing or user a
 
 | NuGet | Maven | Dependency management and build system |
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## 3. Acceptance Criteria
@@ -95,6 +97,7 @@ Each story and its requirements were fully implemented.
 | HTML encoding for XSS prevention | Razor auto-encodes dynamic content |
 | Structured logging | Contextual and event-based controller logging |
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## 4. Project Structure and Features
@@ -181,18 +184,20 @@ All forms are protected automatically; validation occurs before controller logic
 
 ---
 
-## Functionality Screenshots
+## 5. Functionality Screenshots
 ![Clients Index Page](wwwroot/images/readme/clients-index.png)
 ![Person Form – Create](wwwroot/images/readme/person-create.png)
 ![Toast Notifications](wwwroot/images/readme/toast-success.png)
 ![Custom Error Page](wwwroot/images/readme/error-page.png)
 
+[Back to Table of Contents](#table-of-contents)
 ---
 
-## 5. Known Limitations & Future Improvements
+## 6. Known Limitations & Future Improvements
 - Automated tests (unit/integration) not yet implemented.  
 - Accessibility (WCAG/ARIA) to be expanded.  
 - Repository/service abstraction could further decouple EF Core logic.  
 - Future additions: authentication, authorization, and deployment automation.
 
+[Back to Table of Contents](#table-of-contents)
 ---
