@@ -197,7 +197,7 @@ All forms are protected automatically; validation occurs before controller logic
 [Back to Table of Contents](#table-of-contents)
 ---
 
-## Known Limitations & Future Improvements
+## Known Limitations and Future Improvements
 - Automated tests (unit/integration) not yet implemented.  
 - Accessibility (WCAG/ARIA) to be expanded.  
 - Repository/service abstraction could further decouple EF Core logic.  
