@@ -20,7 +20,7 @@
        - [Bootswatch Materia Theme](#bootswatch-materia-theme)
    - [Security](#security)
    - [Architecture and Key Decisions](#architecture--key-decisions)
-5. [Functionality Screenshots](functionality-screenshots)
+5. [Functionality Screenshots](#functionality-screenshots)
 6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
 
 
