@@ -206,17 +206,17 @@ All forms are protected automatically; validation occurs before controller logic
 
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/landing.png) 
 
-Client and Server Side Validation           
+Paired Client and Server Side Validation via jQuery + .NET Data Annotations          
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/PersonFormValid.png) 
 
-Modern UI Techniques using Vue.js, Bootstrap5, and jQuery
+Modern UI Enhancements using Vue.js, Bootstrap5, and jQuery
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/clientToast.png) 
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/modal.png)
 
-Custom Error Pages
+Custom Error Pages Rendered through Global and In-Line Error Handling
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/error.png)
 
-Robust Logging
+Robust Logging with Serilog
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/log.png)
 
 [Back to Table of Contents](#table-of-contents)
