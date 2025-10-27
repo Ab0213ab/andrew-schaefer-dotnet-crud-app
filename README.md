@@ -1,12 +1,28 @@
 # Aquent Challenge – Enterprise-Grade ASP.NET MVC CRUD Application
-
 ## Table of Contents
-1. [Overview](#overview)
-2. [Tech Stack](#tech-stack)
-3. [Acceptance Criteria](#acceptance-criteria)
-4. [Project Structure and Features](#project-structure-and-features)
-5. [Functionality Screenshots](#functionality-screenshots)
-6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
+1. [Overview](#1-overview)
+2. [Tech Stack](#2-tech-stack)
+   - [.NET Ecosystem](#net-ecosystem)
+   - [Java / JSP / J2EE Ecosystem Comparison](#java--jsp--j2ee-ecosystem-comparison)
+3. [Acceptance Criteria](#3-acceptance-criteria)
+   - [Story #1 – Manage Clients and Relationships](#story-1--manage-clients-and-relationships)
+   - [Story #2 – Client-Side Styling and Validation](#story-2--client-side-styling-and-validation)
+   - [Technical Enhancements](#technical-enhancements)
+4. [Project Structure and Features](#4-project-structure-and-features)
+   - [4.1 Data Model (Entities and ViewModels)](#41-data-model-entities--viewmodels)
+   - [4.2 Core Features](#42-core-features)
+   - [4.3 Validation](#43-validation)
+   - [4.4 Logging and Error Handling](#44-logging--error-handling)
+   - [4.5 Entity Framework Core](#45-entity-framework-core)
+   - [4.6 UI Enhancements](#46-ui-enhancements)
+       - [Vue.js Toast Notifications](#vuejs-toast-notifications)
+       - [Delete Confirmation Modal](#delete-confirmation-modal)
+       - [Bootswatch Materia Theme](#bootswatch-materia-theme)
+   - [4.7 Security](#47-security)
+   - [4.8 Architecture and Key Decisions](#48-architecture--key-decisions)
+5. [Functionality Screenshots](#5-functionality-screenshots)
+6. [Known Limitations and Future Improvements](#6-known-limitations-and-future-improvements)
+
 
 ## Overview
 The **Aquent Challenge** project represents a **self-contained enterprise feature slice**, designed to mimic how production-ready systems are built.  
@@ -105,7 +121,7 @@ Each story and its requirements were fully implemented.
 
 ## Project Structure and Features
 
-### Data Model (Entities & ViewModels)
+### Data Model (Entities and ViewModels)
 - **Entities:** Define core schema and relationships (Clients–People).  
   Relationships modeled with explicit foreign keys only, improving clarity and preventing unwanted EF cascades.  
 - **ViewModels:** Contain validation logic and UI-bound fields, separating persistence from presentation.
@@ -131,7 +147,7 @@ Each story and its requirements were fully implemented.
 
 ---
 
-### Logging & Error Handling
+### Logging and Error Handling
 - **Middleware-based global exception handler** for unexpected runtime errors.  
 - **Explicit try/catch blocks** in CRUD controllers showcase enterprise defensive programming.  
 - **Custom Error Pages** (`/Views/Shared/Error.cshtml`) provide user-friendly messages.
@@ -178,7 +194,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ---
 
-### Architecture & Key Decisions
+### Architecture and Key Decisions
 - **Pattern:** MVC using strongly-typed ViewModels.  
 - **No navigation properties:** foreign-key-only relationships for clarity.  
 - **Soft delete pattern:** `IsDeleted` flag maintains data history.  
