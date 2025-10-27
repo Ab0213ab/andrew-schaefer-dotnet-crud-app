@@ -4,11 +4,12 @@
 2. [Tech Stack](#tech-stack)
    - [.NET Ecosystem](#net-ecosystem)
    - [Java / JSP / J2EE Ecosystem Comparison](#java--jsp--j2ee-ecosystem-comparison)
-3. [Acceptance Criteria](#acceptance-criteria)
+3. [Setup Instructions](#setup-instructions)
+4. [Acceptance Criteria](#acceptance-criteria)
    - [Story #1 – Manage Clients and Relationships](#story-1--manage-clients-and-relationships)
    - [Story #2 – Client-Side Styling and Validation](#story-2--client-side-styling-and-validation)
    - [Technical Enhancements](#technical-enhancements)
-4. [Project Structure and Features](#4-project-structure-and-features)
+5. [Project Structure and Features](#4-project-structure-and-features)
    - [Data Model (Entities and ViewModels)](#data-model-entities--viewmodels)
    - [Core Features](#core-features)
    - [Validation](#validation)
@@ -20,8 +21,8 @@
        - [Bootswatch Materia Theme](#bootswatch-materia-theme)
    - [Security](#security)
    - [Architecture and Key Decisions](#architecture--key-decisions)
-5. [Functionality Screenshots](#functionality-screenshots)
-6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
+6. [Functionality Screenshots](#functionality-screenshots)
+7. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
 
 
 ## Overview
@@ -76,6 +77,16 @@ This project could be production-ready with minimal additional testing or user a
 | SQLite + EF Migrations | H2 + Liquibase/Flyway | Embedded DB with schema migrations |
 | NuGet | Maven | Dependency management and build system |
 
+
+[Back to Table of Contents](#table-of-contents)
+---
+
+##  Setup Instructions
+
+1. Install [.NET 8 SDK](https://dotnet.microsoft.com/download) using the install wizard
+2. Open a terminal and run this command to verify installation:
+   ``dotnet --version``
+3.
 
 [Back to Table of Contents](#table-of-contents)
 ---
