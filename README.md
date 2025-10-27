@@ -1,10 +1,10 @@
 # Aquent Challenge – Enterprise-Grade ASP.NET MVC CRUD Application
 ## Table of Contents
-1. [Overview](#1-overview)
-2. [Tech Stack](#2-tech-stack)
+1. [Overview](#overview)
+2. [Tech Stack](#tech-stack)
    - [.NET Ecosystem](#net-ecosystem)
    - [Java / JSP / J2EE Ecosystem Comparison](#java--jsp--j2ee-ecosystem-comparison)
-3. [Acceptance Criteria](#3-acceptance-criteria)
+3. [Acceptance Criteria](#acceptance-criteria)
    - [Story #1 – Manage Clients and Relationships](#story-1--manage-clients-and-relationships)
    - [Story #2 – Client-Side Styling and Validation](#story-2--client-side-styling-and-validation)
    - [Technical Enhancements](#technical-enhancements)
