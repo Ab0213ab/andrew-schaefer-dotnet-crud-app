@@ -83,11 +83,11 @@ This project could be production-ready with minimal additional testing or user a
 
 ##  Setup Instructions
 
-(Windows, sorry Mac users)
+(For Windows, sorry Mac users)
 
 These instructions were written for and tested on a non-technical person with a laptop with 14 broken keyboard keys running Windows 10.
 
-1. Install [.NET 8 SDK](https://dotnet.microsoft.com/download) using the install wizard
+1. Install Microsoft's [.NET 8 SDK](https://dotnet.microsoft.com/download) using the install wizard
 2. Open a terminal and run this command to verify installation:
    ```
    dotnet --version
