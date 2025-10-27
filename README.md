@@ -21,6 +21,7 @@ The project demonstrates:
 
 This project could be production-ready with minimal additional testing or user authentication.
 
+
 [Back to Table of Contents](#table-of-contents)
 ---
 
@@ -60,6 +61,7 @@ This project could be production-ready with minimal additional testing or user a
 
 | NuGet | Maven | Dependency management and build system |
 
+
 [Back to Table of Contents](#table-of-contents)
 ---
 
@@ -96,6 +98,7 @@ Each story and its requirements were fully implemented.
 | Anti-forgery token validation | Razor + `[ValidateAntiForgeryToken]` attribute |
 | HTML encoding for XSS prevention | Razor auto-encodes dynamic content |
 | Structured logging | Contextual and event-based controller logging |
+
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -190,6 +193,7 @@ All forms are protected automatically; validation occurs before controller logic
 ![Toast Notifications](wwwroot/images/readme/toast-success.png)
 ![Custom Error Page](wwwroot/images/readme/error-page.png)
 
+
 [Back to Table of Contents](#table-of-contents)
 ---
 
@@ -198,6 +202,7 @@ All forms are protected automatically; validation occurs before controller logic
 - Accessibility (WCAG/ARIA) to be expanded.  
 - Repository/service abstraction could further decouple EF Core logic.  
 - Future additions: authentication, authorization, and deployment automation.
+
 
 [Back to Table of Contents](#table-of-contents)
 ---
