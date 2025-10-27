@@ -61,6 +61,7 @@
 @if (allPeople.Any())
 {
     <div class="form-check-list mb-3">
+        <label class="form-label">Associated Contacts</label>
         @foreach (var person in allPeople)
         {
             bool isChecked = associatedIds.Contains(person.Id);
