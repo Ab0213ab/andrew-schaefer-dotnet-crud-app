@@ -96,7 +96,7 @@ These instructions were written for and tested on a non-technical person with a 
 5. Navigate to File Explorer > Downloads and right-click the zip file.
 6. Click 'Extract Files' and choose a memorable storage location on your machine
 7. Navigate to AquentChallenge/AquentChallenge in the project. Find the folder where the AquentChallenge.csproj file is located.
-8. In that folder, click the File Explorer search bar and type 'cmd' + ENTER.
+8. In that folder, click the blank space in the File Explorer search bar and type 'cmd' + ENTER.
 9. After the terminal window opens, type the following commands one at a time:
    ```
    dotnet restore
