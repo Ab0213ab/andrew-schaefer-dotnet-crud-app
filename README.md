@@ -8,7 +8,7 @@
 5. [Functionality Screenshots](#functionality-screenshots)
 6. [Known Limitations and Future Improvements](#known-limitations-and-future-improvements)
 
-## 1. Overview
+## Overview
 The **Aquent Challenge** project represents a **self-contained enterprise feature slice**, designed to mimic how production-ready systems are built.  
 While the task is a simple CRUD application, its structure, error handling, validation, and logging follow enterprise development standards.  
 
@@ -25,7 +25,7 @@ This project could be production-ready with minimal additional testing or user a
 [Back to Table of Contents](#table-of-contents)
 ---
 
-## 2. Tech Stack
+## Tech Stack
 
 ### .NET Ecosystem
 | Layer | Technology | Description |
@@ -65,7 +65,7 @@ This project could be production-ready with minimal additional testing or user a
 [Back to Table of Contents](#table-of-contents)
 ---
 
-## 3. Acceptance Criteria
+## Acceptance Criteria
 
 Each story and its requirements were fully implemented.
 
@@ -103,16 +103,16 @@ Each story and its requirements were fully implemented.
 [Back to Table of Contents](#table-of-contents)
 ---
 
-## 4. Project Structure and Features
+## Project Structure and Features
 
-### 4.1 Data Model (Entities & ViewModels)
+### Data Model (Entities & ViewModels)
 - **Entities:** Define core schema and relationships (Clients–People).  
   Relationships modeled with explicit foreign keys only, improving clarity and preventing unwanted EF cascades.  
 - **ViewModels:** Contain validation logic and UI-bound fields, separating persistence from presentation.
 
 ---
 
-### 4.2 Core Features
+### Core Features
 #### Clients
 - Full CRUD (create/edit/delete/view).  
 - Associates People through a one-to-many FK (`ClientId`).  
@@ -124,21 +124,21 @@ Each story and its requirements were fully implemented.
 
 ---
 
-### 4.3 Validation
+### Validation
 - Server-side: enforced through C# DataAnnotations.  
 - Client-side: powered by jQuery Unobtrusive Validation for UX parity.  
 - Prevents invalid submissions before and after form submission.
 
 ---
 
-### 4.4 Logging & Error Handling
+### Logging & Error Handling
 - **Middleware-based global exception handler** for unexpected runtime errors.  
 - **Explicit try/catch blocks** in CRUD controllers showcase enterprise defensive programming.  
 - **Custom Error Pages** (`/Views/Shared/Error.cshtml`) provide user-friendly messages.
 
 ---
 
-### 4.5 Entity Framework Core
+### Entity Framework Core
 EF Core manages data persistence using LINQ-based queries and migrations.  
 It provides schema versioning, relationship mapping, and entity tracking.  
 
@@ -147,7 +147,7 @@ EF Core ≈ Hibernate/JPA, LINQ ≈ JPQL, Migrations ≈ Liquibase/Flyway.
 
 ---
 
-### 4.6 UI Enhancements
+### UI Enhancements
 #### Vue.js Toast Notifications
 A lightweight Vue instance provides reusable, reactive toasts across all controllers (Create/Edit/Delete).  
 Triggers:
@@ -164,7 +164,7 @@ Aesthetic enhancement using Bootswatch’s **Materia** theme for polished, consi
 
 ---
 
-### 4.7 Security
+### Security
 This project employs multiple layers of built-in security:
 
 | Mechanism | Purpose | Implementation |
@@ -178,7 +178,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ---
 
-### 4.8 Architecture & Key Decisions
+### Architecture & Key Decisions
 - **Pattern:** MVC using strongly-typed ViewModels.  
 - **No navigation properties:** foreign-key-only relationships for clarity.  
 - **Soft delete pattern:** `IsDeleted` flag maintains data history.  
@@ -187,7 +187,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ---
 
-## 5. Functionality Screenshots
+## Functionality Screenshots
 ![Clients Index Page](wwwroot/images/readme/clients-index.png)
 ![Person Form – Create](wwwroot/images/readme/person-create.png)
 ![Toast Notifications](wwwroot/images/readme/toast-success.png)
@@ -197,7 +197,7 @@ All forms are protected automatically; validation occurs before controller logic
 [Back to Table of Contents](#table-of-contents)
 ---
 
-## 6. Known Limitations & Future Improvements
+## Known Limitations & Future Improvements
 - Automated tests (unit/integration) not yet implemented.  
 - Accessibility (WCAG/ARIA) to be expanded.  
 - Repository/service abstraction could further decouple EF Core logic.  
