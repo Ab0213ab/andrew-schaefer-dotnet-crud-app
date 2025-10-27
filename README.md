@@ -255,7 +255,7 @@ Robust, Production-Ready Logging with Serilog
 - Automated tests (unit/integration) not yet implemented.  
 - Accessibility (WCAG/ARIA) to be expanded.  
 - Repository/service abstraction could further decouple EF Core logic.  
-- Future additions: authentication, authorization, and deployment automation.
+- Future additions: IsDeleted records toggle, authentication, authorization, and deployment automation.
 
 
 [Back to Table of Contents](#table-of-contents)
