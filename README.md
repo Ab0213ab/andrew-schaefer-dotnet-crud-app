@@ -203,10 +203,24 @@ All forms are protected automatically; validation occurs before controller logic
 ---
 
 ## Functionality Screenshots
-![Clients Index Page](wwwroot/images/readme/clients-index.png)
-![Person Form – Create](wwwroot/images/readme/person-create.png)
-![Toast Notifications](wwwroot/images/readme/toast-success.png)
-![Custom Error Page](wwwroot/images/readme/error-page.png)
+
+![ScreenShot](wwwroot/images/landing.png) 
+
+Credential Authorization/Input Validation   |  Responsiveness           
+:-------------------------:|:-------------------------:
+![ScreenShot](includes/images/functionalityScreenShots/ssLoginE.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssResponsive.png)
+
+Minimalistic, Modern Design       |  Intuitive Usability             
+:-------------------------:|:-------------------------:
+![ScreenShot](includes/images/functionalityScreenShots/ssHome1.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssHome2.png)
+
+BootStrap Front-End Techniques   |  jQuery DataTables           
+:-------------------------:|:-------------------------:
+![ScreenShot](includes/images/functionalityScreenShots/ssModal.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssViewCo.png)
+
+Full CRUD Operation Support   |  Full CRUD Operation Support           
+:-------------------------:|:-------------------------:
+![ScreenShot](includes/images/functionalityScreenShots/ssEditUser.png)  |  ![ScreenShot](includes/images/functionalityScreenShots/ssDelUser.png)
 
 
 [Back to Table of Contents](#table-of-contents)
