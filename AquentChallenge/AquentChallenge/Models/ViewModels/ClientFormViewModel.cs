@@ -14,11 +14,12 @@ namespace AquentChallenge.Models.ViewModels
         [Url(ErrorMessage = "Please enter a valid URL (include http:// or https://).")]
         public string? Website { get; set; }
 
-        [StringLength(25, MinimumLength = 10)]
-        [Phone(ErrorMessage = "Please enter a valid phone number.")]
+        [StringLength(25, MinimumLength = 10, ErrorMessage = "Phone number must be between 10 and 25 characters.")]
+        [RegularExpression(@"^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$", ErrorMessage = "Phone must be a valid U.S. format (e.g., (555) 555-5555).")]
         public string? Phone { get; set; }
 
-        [StringLength(200, MinimumLength = 5, ErrorMessage = "Address must be at least 5 characters.")]
+        [StringLength(200, MinimumLength = 5, ErrorMessage = "Address must be between 5 and 200 characters.")]
+        [RegularExpression(@"^[A-Za-z0-9\s.,#'\-]+$", ErrorMessage = "Address contains invalid characters.")]
         public string? Address { get; set; }
 
         // UI-specific fields (not in DB)
