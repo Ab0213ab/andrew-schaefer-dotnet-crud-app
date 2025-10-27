@@ -83,12 +83,26 @@ This project could be production-ready with minimal additional testing or user a
 
 ##  Setup Instructions
 
+These instructions were written for and tested on a non-technical person with a laptop with 14 broken keyboard keys running Windows 10.
+
 1. Install [.NET 8 SDK](https://dotnet.microsoft.com/download) using the install wizard
 2. Open a terminal and run this command to verify installation:
    ```
    dotnet --version
    ```
-4.
+4. Download this fork as a zip file onto your machine.
+5. Navigate to file explorer > downloads and right-click the zip file.
+6. Click 'extract files' and choose a memorable storage location on your machine
+7. Navigate to AquentChallenge/AquentChallenge in the project. Find where the AquentChallenge.csproj file is located.
+8. In the same folder as the AquentChallenge.csproj file, click the File Explorer search bar and type 'cmd' + ENTER.
+9. After the terminal window opens, type the following commands one at a time:
+   ```
+   dotnet restore
+   dotnet build
+   dotnet run
+   ```
+10. Open an internet browser and in the URL bar, type ``http://localhost:5094``. Note: the port number may differ for your setup.
+11. Happy CRUDing!
 
 [Back to Table of Contents](#table-of-contents)
 ---
