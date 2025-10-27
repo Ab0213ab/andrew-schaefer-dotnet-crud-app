@@ -204,7 +204,7 @@ All forms are protected automatically; validation occurs before controller logic
 
 ## Functionality Screenshots
 
-![ScreenShot](./wwwroot/images/landing.png) 
+![ScreenShot](/AquentChallenge/wwwroot/images/landing.png) 
 
 Credential Authorization/Input Validation   |  Responsiveness           
 :-------------------------:|:-------------------------:
