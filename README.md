@@ -216,7 +216,7 @@ Modern UI Enhancements using Vue.js, Bootstrap5, and jQuery
 Custom Error Pages Rendered through Global and In-Line Error Handling
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/error.png)
 
-Robust Logging with Serilog
+Robust, Production-Ready Logging with Serilog
 ![ScreenShot](AquentChallenge/AquentChallenge/wwwroot/images/log.png)
 
 [Back to Table of Contents](#table-of-contents)
