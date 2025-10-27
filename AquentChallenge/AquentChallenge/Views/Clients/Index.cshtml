@@ -44,42 +44,44 @@ else
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Website)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            @if (showDeleted) { 
+    @if (Model != null) {
+        @foreach (var item in Model) {
+            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                    @Html.DisplayFor(modelItem => item.CompanyName)
                 </td>
-            }
-            <td>
-                <div class="btn-group" role="group" aria-label="Actions">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
-                        <i class="bi bi-pencil"></i> Edit
-                    </a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">
-                        <i class="bi bi-eye"></i> Details
-                    </a>
-                    <a href="javascript:void(0)"
-                        class="btn btn-sm btn-outline-danger delete-btn"
-                        data-id="@item.Id"
-                        data-name="@item.CompanyName">
-                        <i class="bi bi-trash"></i> Delete
-                    </a>
-                </div>
-            </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Website)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                @if (showDeleted) { 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                }
+                <td>
+                    <div class="btn-group" role="group" aria-label="Actions">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">
+                            <i class="bi bi-eye"></i> Details
+                        </a>
+                        <a href="javascript:void(0)"
+                            class="btn btn-sm btn-outline-danger delete-btn"
+                            data-id="@item.Id"
+                            data-name="@item.CompanyName">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
     }
     </tbody>
 </table>
