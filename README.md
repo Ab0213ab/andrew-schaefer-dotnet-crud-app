@@ -95,8 +95,8 @@ These instructions were written for and tested on a non-technical person with a 
 4. Download this [fork](https://github.com/Ab0213ab/andrew-schaefer-dotnet-crud-app) as a zip file onto your machine.
 5. Navigate to File Explorer > Downloads and right-click the zip file.
 6. Click 'Extract Files' and choose a memorable storage location on your machine
-7. Navigate to AquentChallenge/AquentChallenge in the project. Find where the AquentChallenge.csproj file is located.
-8. In the same folder as the AquentChallenge.csproj file, click the File Explorer search bar and type 'cmd' + ENTER.
+7. Navigate to AquentChallenge/AquentChallenge in the project. Find the folder where the AquentChallenge.csproj file is located.
+8. In that folder, click the File Explorer search bar and type 'cmd' + ENTER.
 9. After the terminal window opens, type the following commands one at a time:
    ```
    dotnet restore
