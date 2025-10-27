@@ -85,9 +85,9 @@ This project could be production-ready with minimal additional testing or user a
 
 1. Install [.NET 8 SDK](https://dotnet.microsoft.com/download) using the install wizard
 2. Open a terminal and run this command to verify installation:
-   ``
+   ```
    dotnet --version
-   ``
+   ```
 4.
 
 [Back to Table of Contents](#table-of-contents)
